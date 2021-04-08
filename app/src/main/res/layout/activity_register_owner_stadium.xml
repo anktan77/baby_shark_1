@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg1"
+    android:layout_height="match_parent"
+    tools:context=".RegisterOwnerStadium">
+    <TextView
+        android:id="@+id/textviewTitleRegisterOwnerStadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dang ky quản lý sân"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFEB3B"
+
+        />
+    <ImageView
+        android:id="@+id/imageviewRegisterOwnerStadium"
+        android:scaleType="fitXY"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_below="@id/textviewTitleRegisterOwnerStadium"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/account"
+        android:background="@color/white"
+        />
+    <EditText
+        android:id="@+id/edittextFullNameRegisterOwnerStadium"
+        android:hint=" Họ và Tên"
+        android:textColor="#FFEB3B"
+        android:textColorHint="#FFEB3B"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageviewRegisterOwnerStadium"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:id="@+id/edittextEmailRegisterOwnerStadium"
+        android:hint=" EMAIL"
+        android:textColor="#FFEB3B"
+        android:textColorHint="#FFEB3B"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittextFullNameRegisterOwnerStadium"
+        android:layout_marginTop="20dp"
+        android:inputType="textEmailAddress"
+        />
+    <EditText
+        android:id="@+id/edittextPasswordRegisterOwnerStadium"
+        android:inputType="textPassword"
+        android:hint=" Mật khẩu"
+        android:textColor="#FFEB3B"
+        android:textColorHint="#FFEB3B"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittextEmailRegisterOwnerStadium"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:id="@+id/edittextPhoneRegisterOwnerStadium"
+        android:hint="Phone"
+        android:textColor="#FFEB3B"
+        android:textColorHint="#FFEB3B"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittextPasswordRegisterOwnerStadium"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/buttonConfirmRegisterOwnerStadium"
+        android:layout_centerHorizontal="true"
+        android:text="Xác nhận"
+        android:layout_below="@+id/edittextPhoneRegisterOwnerStadium"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        />
+    <TextView
+        android:id="@+id/textviewBackLoginOwnerStadium"
+        android:layout_below="@id/buttonConfirmRegisterOwnerStadium"
+        android:text="Trở về đăng nhập"
+        android:textColor="#f20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"/>
+    <ProgressBar
+        android:id="@+id/progressbarRegisterOwnerStadium"
+        android:layout_below="@+id/textviewBackLoginOwnerStadium"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

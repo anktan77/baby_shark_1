@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_owner_stadium"
+        android:icon="@drawable/stadium"
+        android:title="@string/title_owner_stadium" />
+
+    <item
+        android:id="@+id/navigation_owner_notification"
+        android:icon="@drawable/notification"
+        android:title="@string/title_owner_notification" />
+
+    <item android:id="@+id/navigation_owner_account"
+        android:icon="@drawable/account"
+        android:title="@string/title_owner_account"/>
+</menu>

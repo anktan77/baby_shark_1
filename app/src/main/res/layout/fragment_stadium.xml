@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".StadiumFragment"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <fragment
+        android:id="@+id/mapStadium"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-19dp" />
+
+<!--    <androidx.appcompat.widget.SearchView-->
+<!--        android:id="@+id/Search"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:iconifiedByDefault="false"-->
+<!--        app:queryHint="Search here" />-->
+
+    <ListView
+        android:focusable="false"
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"/>
+
+    <Button
+
+        android:id="@+id/buttonBookStadium"
+        android:layout_width="133dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="83dp"
+        android:text="Đặt sân" />
+
+    <Button
+        android:id="@+id/buttonQuanLySan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonBookStadium"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="-82dp"
+        android:layout_marginEnd="130dp"
+        android:text="Quản lý sân" />
+
+</RelativeLayout>

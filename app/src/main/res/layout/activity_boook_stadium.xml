@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:layout_margin="10dp">
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="TextView"
+        android:layout_weight="2"
+        />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical">
+        <LinearLayout
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.75"
+            >
+            <TextView
+
+                android:textColor="@color/purple_700"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_weight="0.25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Chọn ngày đá"
+                android:gravity="center"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:textColorHint="@color/teal_200"
+                android:textStyle="bold"
+                android:id="@+id/textviewDay"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="0.25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:hint="Chọn ngày đá"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:textColor="@color/purple_700"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.25"
+                        android:text="Giờ bắt đầu"
+                        android:gravity="center"/>
+                    <TextView
+                        android:textColorHint="@color/teal_200"
+                        android:textStyle="bold"
+                        android:id="@+id/textviewTimeStart"
+                        android:gravity="center"
+                        android:hint="Chọn giờ bắt đầu"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.25"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:textColor="@color/purple_700"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.25"
+                        android:text="Giờ kết thúc"
+                        android:gravity="center"/>
+                    <TextView
+                        android:textColorHint="@color/teal_200"
+                        android:textStyle="bold"
+                        android:id="@+id/textviewTimeEnd"
+                        android:gravity="center"
+                        android:hint="Chọn giờ kết thúc"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.25"/>
+                </LinearLayout>
+            </LinearLayout>
+            <EditText
+                android:textColorHint="@color/teal_200"
+                android:id="@+id/editTextNameBook"
+                android:hint="Nhập họ tên"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/teal_200"/>
+            <EditText
+                android:textColorHint="@color/teal_200"
+               android:id="@+id/editTextPhoneBook"
+                android:hint="Nhập số điện thoại"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/teal_200"/>
+            <EditText
+                android:textColorHint="@color/teal_200"
+                android:id="@+id/editTextDescribe"
+                android:hint="Mô tả loại hình đặt sân (vd:kèo riêng, cáp)"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/teal_200"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="cc"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/buttonMap"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="vị trí"/>
+            <Button
+                android:id="@+id/buttonCall"
+                android:paddingLeft="10dp"
+                android:layout_weight="0.25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="gọi"/>
+            <TextView
+                android:layout_weight="0.25"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/buttonConfirm"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Xác nhận"
+                android:layout_marginLeft="90dp"
+               />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
+

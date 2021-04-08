@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg1"
+    android:layout_height="match_parent"
+    tools:context=".LoginOwnerStadium">
+    <TextView
+        android:id="@+id/textviewtitleOwnerStadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng Nhập"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFC107"
+        />
+
+    <EditText
+        android:id="@+id/edittextLoginEmailOwnerStadium"
+        android:hint=" EMAIL"
+        android:textColor="#FFC107"
+        android:textColorHint="#CF9F3D"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textviewtitleOwnerStadium"
+        android:layout_marginTop="20dp"
+        />
+    <EditText
+        android:id="@+id/edittextLoginPasswordOwnerStadium"
+        android:inputType="textPassword"
+        android:hint=" Mật khẩu"
+        android:textColor="#FFC107"
+        android:textColorHint="#CF9F3D"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittextLoginEmailOwnerStadium"
+        android:layout_marginTop="20dp"
+        />
+
+    <Button
+        android:id="@+id/buttonConfirmLoginOwnerStadium"
+        android:layout_centerHorizontal="true"
+        android:text="Đăng nhập"
+        android:textColor="#F1EFEE"
+        android:layout_below="@+id/edittextLoginPasswordOwnerStadium"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        />
+
+    <TextView
+        android:id="@+id/textviewRegisterOwnerStadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonConfirmLoginOwnerStadium"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="24dp"
+        android:layout_toStartOf="@+id/quenmatkhau"
+        android:text="Đăng ký"
+        android:textColor="#f20"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textviewForgotOwnerStadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonConfirmLoginOwnerStadium"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="137dp"
+        android:text="Quên mật khẩu"
+        android:textColor="#f20"
+        android:textSize="20sp" />
+
+    <ProgressBar
+        android:id="@+id/progressbarloginOwnerStadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textviewForgotOwnerStadium"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="181dp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

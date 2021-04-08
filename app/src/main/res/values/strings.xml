@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">baby_shark</string>
+    <string name="title_stadium">Đặt sân</string>
+    <string name="title_ball">Cáp đội</string>
+    <string name="title_newpaper">Tin tức</string>
+    <string name="title_notification">Thông báo</string>
+    <string name="title_account">Tài khoản</string>
+    <string name="map_api_key">AIzaSyDzKoOez57cNw_cPLE0WLMEta59petmpzA</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_boook_stadium">BoookStadiumActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_owner_stadium">OwnerStadiumActivity</string>
+
+    <string name="title_owner_stadium">Quản lý sân</string>
+
+
+    <string name="title_owner_notification">Danh sách đặt sân</string>
+    <string name="title_owner_account">Tài khoản</string>
+
+</resources>

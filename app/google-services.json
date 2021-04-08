@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "625571782729",
+    "firebase_url": "https://baby-shark-f9656-default-rtdb.firebaseio.com",
+    "project_id": "baby-shark-f9656",
+    "storage_bucket": "baby-shark-f9656.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625571782729:android:00c6a8de41b840573f9f98",
+        "android_client_info": {
+          "package_name": "com.example.baby_shark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625571782729-52ifgc8j13lo65a11jh9s6jnm3qglpft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoHmJkRFDufYPGORkhlF9tsKCUviO-aB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625571782729-52ifgc8j13lo65a11jh9s6jnm3qglpft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
