@@ -98,7 +98,7 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                AccountBookStadium accountBookStadium = new AccountBookStadium(Hovaten,Email,matkhau,phone);
+                                AccountBookStadium accountBookStadium = new AccountBookStadium(Hovaten,Email, phone);
                                 reference = FirebaseDatabase.getInstance().getReference("AccountBookStadium");
                                         reference.child(FirebaseAuth.getInstance().getUid()).setValue(accountBookStadium)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {

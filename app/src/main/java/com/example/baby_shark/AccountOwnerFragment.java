@@ -22,63 +22,54 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class AccountFragment extends Fragment {
+public class AccountOwnerFragment extends Fragment {
     Button btnLogout;
     TextView txtCreateOwnerStadium;
 
-    ImageView imgUser;
-    TextView txtNameUser, txtPhoneUser, txtEmailUser;
+    ImageView imgOwner;
+    TextView txtNameOwner, txtPhoneOwner, txtEmailOwner;
 
     //firebase
     FirebaseUser user;
     DatabaseReference reference;
 
     String userID;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_account,container,false);
-
+        View view = inflater.inflate(R.layout.fragment_account_owner,container,false);
         //ánh xạ
-        btnLogout = (Button) view.findViewById(R.id.buttonLogoutUser) ;
-        txtCreateOwnerStadium = (TextView) view.findViewById(R.id.textviewCreateOwnerStadium);
-        imgUser = (ImageView) view.findViewById(R.id.imageViewUser);
-        txtNameUser = (TextView) view.findViewById(R.id.textViewNameUser);
-        txtPhoneUser = (TextView) view.findViewById(R.id.textviewPhoneUser);
-        txtEmailUser = (TextView) view.findViewById(R.id.textViewEmailUser);
+        btnLogout = (Button) view.findViewById(R.id.buttonLogoutOwner) ;
+
+        imgOwner = (ImageView) view.findViewById(R.id.imageViewOwner);
+        txtNameOwner = (TextView) view.findViewById(R.id.textViewNameOwner);
+        txtPhoneOwner = (TextView) view.findViewById(R.id.textviewPhoneOwner);
+        txtEmailOwner = (TextView) view.findViewById(R.id.textViewEmailOwner);
 
         //lấy dữ liệu theo ID
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("AccountBookStadium");
+        reference = FirebaseDatabase.getInstance().getReference("AccountOwnerStadium");
         userID = user.getUid();
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                AccountBookStadium accountProfile = snapshot.getValue(AccountBookStadium.class);
+                AccountOwnerStadium accountProfile = snapshot.getValue(AccountOwnerStadium.class);
                 if (accountProfile != null){
                     String name = accountProfile.getName();
                     String email = accountProfile.getEmail();
                     String phone = accountProfile.getPhone();
 
                     //gán vào
-                    txtNameUser.setText(name);
-                    txtPhoneUser.setText(phone);
-                    txtEmailUser.setText(email);
+                    txtNameOwner.setText(name);
+                    txtPhoneOwner.setText(phone);
+                    txtEmailOwner.setText(email);
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "đã xảy ra lỗi", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //tạo owner
-        txtCreateOwnerStadium.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(),RegisterOwnerStadium.class));
             }
         });
 
@@ -87,7 +78,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getActivity(),Login.class));
+                startActivity(new Intent(getActivity(),LoginOwnerStadium.class));
                 getActivity().finish();
             }
         });

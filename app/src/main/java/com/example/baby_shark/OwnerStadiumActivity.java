@@ -34,11 +34,11 @@ public class OwnerStadiumActivity extends AppCompatActivity {
                         loadFragment(fragment);
                         return true;
                     case R.id.navigation_owner_notification:
-                        fragment = new StadiumFragment();
+                        fragment = new ListOwnerFragment();
                         loadFragment(fragment);
                         return true;
                     case R.id.navigation_owner_account:
-                        fragment = new NotificationFragment();
+                        fragment = new AccountOwnerFragment();
                         loadFragment(fragment);
                         return true;
                 }

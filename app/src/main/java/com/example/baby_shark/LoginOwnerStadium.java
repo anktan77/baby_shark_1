@@ -57,7 +57,7 @@ public class LoginOwnerStadium extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginOwnerStadium.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), OwnerStadiumActivity.class));
                         } else {
                             Toast.makeText(LoginOwnerStadium.this, "Sai email hoặc mật khẩu", Toast.LENGTH_SHORT).show();
 //                            progressBar.setVisibility(View.GONE);

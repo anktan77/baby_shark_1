@@ -5,7 +5,7 @@ public class AccountOwnerStadium {
     private String email;
     private String phone;
 
-    public void AccountOwnerStadium(){}
+    AccountOwnerStadium(){}
 
     public AccountOwnerStadium(String name, String email, String phone) {
         this.name = name;

@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.ListFragment;
 
@@ -26,6 +28,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 
 public class StadiumFragment extends ListFragment implements OnMapReadyCallback {
@@ -34,13 +44,17 @@ public class StadiumFragment extends ListFragment implements OnMapReadyCallback 
     ListView lsStadium;
     SearchView sv_search;
 
-    String[] arrayStadium = {"Sân bóng Football Arena","Sân bóng Quyết Tâm 2","Sân bóng Thanh Niên","Sân bóng Đường 79"};
+    ArrayList<String> arrayStadium;
     ArrayAdapter adapter;
     private GoogleMap mMap;
     //
     Button btnBookStadium;
     //giả lập
     Button btnQuanLySan;
+    //data
+    DatabaseReference reference;
+    FirebaseUser user;
+    String userID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,34 +70,52 @@ public class StadiumFragment extends ListFragment implements OnMapReadyCallback 
         // Inflate the layout for this fragment
         lsStadium = (ListView) view.findViewById(android.R.id.list);
         sv_search = (androidx.appcompat.widget.SearchView) view.findViewById(R.id.navSearch);
-//        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,arrayStadium);
+        //data
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("AccountOwnerStadium");
+        arrayStadium = new ArrayList<>();
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,arrayStadium){
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
-                // Cast the list view each item as text view
                 TextView item = (TextView) super.getView(position,convertView,parent);
-
-                // Set the typeface/font for the current item
-//                item.setTypeface();
-
-                // Set the list view item's text color
                 item.setTextColor(Color.parseColor("black"));
-
-                // Set the item text style to bold
                 item.setTypeface(item.getTypeface(), Typeface.BOLD);
-
-                // Change the item text size
                 item.setTextSize(TypedValue.COMPLEX_UNIT_DIP,18);
-
-                // return the view
                 return item;
             }
         };
         lsStadium.setAdapter(adapter);
         //sự kiện click vào list sân để đặt sân
 
+        //list
+        reference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String accountOwnerStadium = snapshot.getValue(AccountOwnerStadium.class).getName();
+                arrayStadium.add(accountOwnerStadium);
+                adapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                adapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         lsStadium.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -103,15 +135,8 @@ public class StadiumFragment extends ListFragment implements OnMapReadyCallback 
 //            }
 //        });
 
-        //quản lý sân
-        btnQuanLySan = (Button) view.findViewById(R.id.buttonQuanLySan);
-        btnQuanLySan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),OwnerStadiumActivity.class);
-                startActivity(intent);
-            }
-        });
+
+
         return view;
     }
 

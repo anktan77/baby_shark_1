@@ -94,7 +94,7 @@ public class RegisterOwnerStadium extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(RegisterOwnerStadium.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                                 progressBar.setVisibility(View.GONE);
-                                                startActivity(new Intent(RegisterOwnerStadium.this,MainActivity.class));
+                                                startActivity(new Intent(RegisterOwnerStadium.this,OwnerStadiumActivity.class));
                                             }
                                             else {
                                                 Toast.makeText(RegisterOwnerStadium.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();

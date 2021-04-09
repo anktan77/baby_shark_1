@@ -17,6 +17,7 @@
         />
 
     <EditText
+        android:text="anktan2003@gmail.com"
         android:id="@+id/edittextLoginEmailOwnerStadium"
         android:hint=" EMAIL"
         android:textColor="#FFC107"
@@ -29,6 +30,7 @@
         android:layout_marginTop="20dp"
         />
     <EditText
+        android:text="xanhau05"
         android:id="@+id/edittextLoginPasswordOwnerStadium"
         android:inputType="textPassword"
         android:hint=" Mật khẩu"

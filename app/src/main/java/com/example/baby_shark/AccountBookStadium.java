@@ -5,9 +5,9 @@ public class AccountBookStadium {
     private String email;
     private String phone;
 
-    AccountBookStadium(String hovaten, String email, String phone){}
+    AccountBookStadium(){}
 
-    public AccountBookStadium(String name, String email, String password, String phone) {
+    public AccountBookStadium(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
