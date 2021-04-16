@@ -2,6 +2,7 @@ package com.example.baby_shark;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,15 +11,25 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class BoookStadiumActivity extends AppCompatActivity {
-    TextView txtDay,txtTimeStart,txtTimeEnd;
-    EditText edtNameBook,edtPhoneBook;
+    TextView txtDay,txtTimeStart,txtTimeEnd,txtTitleStadium,txtKeyStadium;
+    EditText edtNameBook,edtPhoneBook, edtDescribeBook;
     Button btnMap,btnCall,btnConfirm;
 
     //khai báo để lấy date hiện tại
@@ -26,6 +37,10 @@ public class BoookStadiumActivity extends AppCompatActivity {
 
     //khai báo kiểu định dạng cho date
     SimpleDateFormat simpleDateFormat;
+
+    //
+    DatabaseReference reference;
+    ArrayList<String> arrayName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +55,40 @@ public class BoookStadiumActivity extends AppCompatActivity {
 //        });
 
         AnhXa();
+        //lấy dữ liệu phía stadium
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("data");
+        String nameStadium = bundle.getString("namestadium");
+        txtTitleStadium.setText(nameStadium);
+            //
+        reference = FirebaseDatabase.getInstance().getReference("AccountOwnerStadium");
+        reference.orderByChild("name").equalTo(nameStadium).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String id = snapshot.getKey();
+                txtKeyStadium.setText(id);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         //khởi tạo format
         simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -76,6 +125,50 @@ public class BoookStadiumActivity extends AppCompatActivity {
                 txtTimeEnd.setTextColor(Color.WHITE);
                 txtTimeEnd.setTextSize(20);
                 PickTimeEnd();
+            }
+        });
+
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //lấy dữ liệu
+                String day = txtDay.getText().toString();
+                String timeS = txtTimeStart.getText().toString();
+                String timeE = txtTimeEnd.getText().toString();
+                String name = edtNameBook.getText().toString();
+                String phone = edtPhoneBook.getText().toString();
+                String describe = edtDescribeBook.getText().toString();
+
+                reference.orderByChild("name").equalTo(nameStadium).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                        String id = snapshot.getKey();
+                        InforBookStadium inforBookStadium = new InforBookStadium(day,timeS,timeE,name,phone,describe);
+                        reference.child(id).child("-inForBookStadium").push().setValue(inforBookStadium);
+                        Toast.makeText(BoookStadiumActivity.this, "Đặt sân thành công", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(BoookStadiumActivity.this,MainActivity.class));
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
     }
@@ -130,6 +223,7 @@ public class BoookStadiumActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+
     private void AnhXa() {
         txtDay = (TextView) findViewById(R.id.textviewDay);
         txtTimeStart = (TextView) findViewById(R.id.textviewTimeStart);
@@ -139,5 +233,8 @@ public class BoookStadiumActivity extends AppCompatActivity {
         btnCall = (Button) findViewById(R.id.buttonCall);
         btnMap = (Button) findViewById(R.id.buttonMap);
         btnConfirm = (Button) findViewById(R.id.buttonConfirm);
+        txtTitleStadium = (TextView) findViewById(R.id.textViewTitleNameBookStadium);
+        txtKeyStadium = (TextView) findViewById(R.id.textviewTitleKeyNameBookStadium);
+        edtDescribeBook = (EditText) findViewById(R.id.editTextDescribe);
     }
 }

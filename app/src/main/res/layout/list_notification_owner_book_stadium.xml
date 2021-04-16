@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/account" />
+    <TextView
+        android:id="@+id/textViewNTFName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên đặt"
+        android:layout_toRightOf="@+id/imageView"/>
+    <TextView
+        android:id="@+id/textViewNTFPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textViewNTFName"
+        android:text="số điện thoại"/>
+    <TextView
+        android:id="@+id/textViewNTFDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ngày đá"
+        android:layout_below="@+id/textViewNTFName"
+        android:layout_toRightOf="@id/imageView"/>
+    <TextView
+        android:id="@+id/textViewNTFTimeStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="giờ bắt đầu"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_below="@+id/textViewNTFDay"/>
+    <TextView
+        android:id="@+id/textViewNTFTimeEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="giờ kết thúc"
+        android:layout_toRightOf="@id/textViewNTFTimeStart"
+        android:layout_below="@id/textViewNTFDay"/>
+    <Button
+        android:id="@+id/buttonNTFConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chấp nhận"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_below="@id/textViewNTFTimeStart"/>
+    <Button
+        android:id="@+id/buttonNTFCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="gọi"
+        android:layout_toRightOf="@id/buttonNTFConfirm"
+        android:layout_below="@id/textViewNTFTimeEnd"/>
+</RelativeLayout>

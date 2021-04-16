@@ -12,12 +12,13 @@ import java.util.List;
 public class BookStadiumAdapter extends BaseAdapter {
     private Context context;
     private int layout;
-    private List<BookStadium> BookStadiumList;
+    private List<InforBookStadium> inforBookStadiumList;
 
-    public BookStadiumAdapter(Context context, int layout, List<BookStadium> bookStadiumList) {
+
+    public BookStadiumAdapter(Context context, int layout, List<InforBookStadium> inforBookStadiumList) {
         this.context = context;
         this.layout = layout;
-        BookStadiumList = bookStadiumList;
+        this.inforBookStadiumList = inforBookStadiumList;
     }
 
     public Context getContext() {
@@ -36,17 +37,17 @@ public class BookStadiumAdapter extends BaseAdapter {
         this.layout = layout;
     }
 
-    public List<BookStadium> getBookStadiumList() {
-        return BookStadiumList;
+    public List<InforBookStadium> getInforBookStadiumList() {
+        return inforBookStadiumList;
     }
 
-    public void setBookStadiumList(List<BookStadium> bookStadiumList) {
-        BookStadiumList = bookStadiumList;
+    public void setInforBookStadiumList(List<InforBookStadium> inforBookStadiumList) {
+        this.inforBookStadiumList = inforBookStadiumList;
     }
 
     @Override
     public int getCount() {
-        return BookStadiumList.size();
+        return inforBookStadiumList.size();
     }
 
     @Override
@@ -58,34 +59,39 @@ public class BookStadiumAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
+
     private class ViewHolder{//sử dụng holder để tối ưu cho listview
-        TextView txtName,txtDescribe,txtPhone,txtTime;
+        TextView txtName,txtDescribe,txtPhone,txtTimeS,txtTimeE,txtDay;
 
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        if (convertView==null){
+        if (convertView == null){
             //lấy phần context nào
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout,null);
             holder = new ViewHolder();
             //ánh xạ view
+            holder.txtDay = (TextView) convertView.findViewById(R.id.textViewLSDay);
             holder.txtName = (TextView) convertView.findViewById(R.id.textviewName);
             holder.txtDescribe = (TextView) convertView.findViewById(R.id.textviewDescribe);
             holder.txtPhone = (TextView) convertView.findViewById(R.id.textviewPhone);
-            holder.txtTime = (TextView) convertView.findViewById(R.id.textviewTimePlay) ;
+            holder.txtTimeS = (TextView) convertView.findViewById(R.id.textviewLSTimeStart) ;
+            holder.txtTimeE = (TextView) convertView.findViewById(R.id.textViewLSTimeEnd);
             convertView.setTag(holder);
         }
         else {
             holder = (ViewHolder) convertView.getTag();
         }
         //gán giá trị
-        BookStadium bookStadium = BookStadiumList.get(position);
-        holder.txtName.setText(bookStadium.getName());
-        holder.txtDescribe.setText(bookStadium.getDescribe());
-        holder.txtPhone.setText(bookStadium.getPhone());
-        holder.txtTime.setText(bookStadium.getTime());
+        InforBookStadium inforBookStadium = inforBookStadiumList.get(position);
+        holder.txtDay.setText(inforBookStadium.getDayPlay());
+        holder.txtName.setText(inforBookStadium.getNamePlay());
+        holder.txtDescribe.setText(inforBookStadium.getDescribePlay());
+        holder.txtPhone.setText(inforBookStadium.getPhonePlay());
+        holder.txtTimeS.setText(inforBookStadium.getTimeStart());
+        holder.txtTimeE.setText(inforBookStadium.getTimeEnd());
         return convertView;
     }
 }

@@ -46,6 +46,10 @@ public class StadiumFragment extends ListFragment implements OnMapReadyCallback 
 
     ArrayList<String> arrayStadium;
     ArrayAdapter adapter;
+
+    //key
+    ArrayList<String> arrayKey;
+    ArrayAdapter adapterkey;
     private GoogleMap mMap;
     //
     Button btnBookStadium;
@@ -92,6 +96,7 @@ public class StadiumFragment extends ListFragment implements OnMapReadyCallback 
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String accountOwnerStadium = snapshot.getValue(AccountOwnerStadium.class).getName();
+
                 arrayStadium.add(accountOwnerStadium);
                 adapter.notifyDataSetChanged();
             }
@@ -116,27 +121,53 @@ public class StadiumFragment extends ListFragment implements OnMapReadyCallback 
 
             }
         });
+
+        //sự kiện click vào item
+        arrayKey = new ArrayList<>();
+        adapterkey = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1,arrayKey);
+
         lsStadium.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(),BoookStadiumActivity.class);
+                Bundle bundle = new Bundle();
+                String name = arrayStadium.get(position);
+                ArrayList<String> arrayKey = new ArrayList<>();
+                reference.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                        String key = snapshot.getKey();
+                        arrayKey.add(key);
+
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                //tìm key phù hợp
+                bundle.putString("namestadium",name);
+                intent.putExtra("data",bundle);
                 startActivity(intent);
                 return false;
             }
         });
-
-//        //book sân
-//        btnBookStadium = (Button) view.findViewById(R.id.buttonBookStadium);
-//        btnBookStadium.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(),BoookStadiumActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
-
         return view;
     }
 
