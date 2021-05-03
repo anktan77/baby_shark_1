@@ -29,7 +29,7 @@
         />
     <EditText
         android:id="@+id/edittextFullNameRegisterOwnerStadium"
-        android:hint=" Họ và Tên"
+        android:hint="Tên sân"
         android:textColor="#FFEB3B"
         android:textColorHint="#FFEB3B"
         android:layout_marginLeft="5dp"
@@ -41,7 +41,7 @@
         />
     <EditText
         android:id="@+id/edittextEmailRegisterOwnerStadium"
-        android:hint=" EMAIL"
+        android:hint="EMAIL"
         android:textColor="#FFEB3B"
         android:textColorHint="#FFEB3B"
         android:layout_marginLeft="5dp"
@@ -55,7 +55,7 @@
     <EditText
         android:id="@+id/edittextPasswordRegisterOwnerStadium"
         android:inputType="textPassword"
-        android:hint=" Mật khẩu"
+        android:hint="Mật khẩu"
         android:textColor="#FFEB3B"
         android:textColorHint="#FFEB3B"
         android:layout_marginLeft="5dp"
@@ -81,15 +81,15 @@
 
     <Button
         android:id="@+id/buttonConfirmRegisterOwnerStadium"
-        android:layout_centerHorizontal="true"
-        android:text="Xác nhận"
-        android:layout_below="@+id/edittextPhoneRegisterOwnerStadium"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edittextAddressRegisterOwnerStadium"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
 
-        />
+        android:layout_marginRight="30dp"
+        android:text="Xác nhận" />
+
     <TextView
         android:id="@+id/textviewBackLoginOwnerStadium"
         android:layout_below="@id/buttonConfirmRegisterOwnerStadium"
@@ -105,4 +105,16 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edittextAddressRegisterOwnerStadium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edittextPhoneRegisterOwnerStadium"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="5dp"
+        android:hint="Địa chỉ"
+        android:textColor="#FFEB3B"
+        android:textColorHint="#FFEB3B" />
 </RelativeLayout>

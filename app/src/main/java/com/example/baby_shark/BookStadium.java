@@ -5,12 +5,14 @@ public class BookStadium {
     private String name;
     private String phone;
     private String describe;
+    private String picture;
 
-    public BookStadium(String time, String name, String phone, String describe) {
+    public BookStadium(String time, String name, String phone, String describe, String picture) {
         this.time = time;
         this.name = name;
         this.phone = phone;
         this.describe = describe;
+        this.picture = picture;
     }
 
     public String getTime() {
@@ -43,5 +45,13 @@ public class BookStadium {
 
     public void setDescribe(String describe) {
         this.describe = describe;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

@@ -4,13 +4,15 @@ public class AccountBookStadium {
     private String name;
     private String email;
     private String phone;
+    private String picture;
 
     AccountBookStadium(){}
 
-    public AccountBookStadium(String name, String email, String phone) {
+    public AccountBookStadium(String name, String email, String phone, String picture) {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.picture = picture;
     }
 
     public String getName() {
@@ -35,5 +37,13 @@ public class AccountBookStadium {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

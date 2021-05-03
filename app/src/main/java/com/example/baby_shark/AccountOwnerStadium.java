@@ -4,13 +4,16 @@ public class AccountOwnerStadium {
     private String name;
     private String email;
     private String phone;
+    private String picture;
+    private String address;
 
-    AccountOwnerStadium(){}
-
-    public AccountOwnerStadium(String name, String email, String phone) {
+    public  AccountOwnerStadium(){}
+    public AccountOwnerStadium(String name, String email, String phone, String picture, String address) {
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.picture = picture;
+        this.address = address;
     }
 
     public String getName() {
@@ -35,5 +38,21 @@ public class AccountOwnerStadium {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

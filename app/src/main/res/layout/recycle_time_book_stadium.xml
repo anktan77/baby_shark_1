@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textviewRCLTimeS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="giờ bắt đầu"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textviewRCLTimeE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="giờ kết thúc"
+        android:layout_toRightOf="@id/textviewRCLTimeS"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"/>
+</RelativeLayout>

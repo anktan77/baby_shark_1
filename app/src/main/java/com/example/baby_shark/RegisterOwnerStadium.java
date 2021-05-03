@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterOwnerStadium extends AppCompatActivity {
-    EditText edtName, edtEmail, edtpassword, edtPhone;
+    EditText edtName, edtEmail, edtpassword, edtPhone, edtAddress;
     Button btnConfirm;
     ProgressBar progressBar;
     //firebase
@@ -36,6 +36,7 @@ public class RegisterOwnerStadium extends AppCompatActivity {
         edtPhone = (EditText) findViewById(R.id.edittextPhoneRegisterOwnerStadium);
         btnConfirm = (Button) findViewById(R.id.buttonConfirmRegisterOwnerStadium);
         progressBar = (ProgressBar) findViewById(R.id.progressbarRegisterOwnerStadium);
+        edtAddress = (EditText) findViewById(R.id.edittextAddressRegisterOwnerStadium);
         //
         fAuth = FirebaseAuth.getInstance();
 
@@ -48,6 +49,7 @@ public class RegisterOwnerStadium extends AppCompatActivity {
                 String email = edtEmail.getText().toString().trim();
                 String password = edtpassword.getText().toString().trim()+"ow";
                 String phone = edtPhone.getText().toString().trim();
+                String address = edtAddress.getText().toString().trim();
                 //điều kiện
                 if (TextUtils.isEmpty(name)) {
                     edtName.setError("Hãy nhập Họ và Tên");
@@ -85,7 +87,7 @@ public class RegisterOwnerStadium extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //kiểm tra có thành công không
                         if (task.isSuccessful()){
-                            AccountOwnerStadium accountOwnerStadium = new AccountOwnerStadium(name,email,phone);
+                            AccountOwnerStadium accountOwnerStadium = new AccountOwnerStadium(name,email,phone,"https://firebasestorage.googleapis.com/v0/b/baby-shark-f9656.appspot.com/o/images%2Ficon-account-2.jpg?alt=media&token=ec1d7317-dce5-4e2a-88f7-09691da243f3",address);
                             FirebaseDatabase.getInstance().getReference("AccountOwnerStadium")
                                     .child(FirebaseAuth.getInstance().getUid()).setValue(accountOwnerStadium)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {

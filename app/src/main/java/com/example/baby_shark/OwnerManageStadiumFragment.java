@@ -1,13 +1,16 @@
 package com.example.baby_shark;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,6 +26,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,7 +50,16 @@ public class OwnerManageStadiumFragment extends Fragment {
     DatabaseReference reference;
     FirebaseUser user;
     String userID;
-    @Override
+
+    //dialog
+    EditText edtName ;
+    EditText edtPhone ;
+    EditText edtDay ;
+    EditText edtDescribe;
+    EditText edtTimeS;
+    EditText edtTimeE ;
+    Button btnUpdate ;
+    Button btnDelete ;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -167,6 +180,115 @@ public class OwnerManageStadiumFragment extends Fragment {
 
                     }
                 });
+            }
+        });
+
+
+        //ánh xạ cho dialog
+
+        //sự kiện click view
+        lvBookStadium.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.dialog_update_delete_owner_stadium);
+                //ánh xạ với dialog
+                edtName = (EditText) dialog.findViewById(R.id.edittextDALName);
+                edtPhone = (EditText) dialog.findViewById(R.id.edittextDALPhone);
+                edtDay = (EditText) dialog.findViewById(R.id.edittextDALDay);
+                edtDescribe = (EditText) dialog.findViewById(R.id.edittextDALDescribe);
+                edtTimeS = (EditText) dialog.findViewById(R.id.edittextDALTimeStart);
+                edtTimeE = (EditText) dialog.findViewById(R.id.edittextDALTimeEnd);
+                btnUpdate = (Button) dialog.findViewById(R.id.buttonDALUpdate);
+                btnDelete = (Button) dialog.findViewById(R.id.buttonDALDelete);
+
+                //
+                edtName.setText(arrayBookStadium.get(position).getNamePlay());
+                edtPhone.setText(arrayBookStadium.get(position).getPhonePlay());
+                edtDay.setText(arrayBookStadium.get(position).getDayPlay());
+                edtDescribe.setText(arrayBookStadium.get(position).getDescribePlay());
+                edtTimeS.setText(arrayBookStadium.get(position).getTimeStart());
+                edtTimeE.setText(arrayBookStadium.get(position).getTimeEnd());
+                dialog.show();
+
+                //sự kiện cập nhật
+
+                btnUpdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String udname = edtName.getText().toString();
+                        String upphone = edtPhone.getText().toString();
+                        String upday = edtDay.getText().toString();
+                        String updescribe = edtDescribe.getText().toString();
+                        String uptimes = edtTimeS.getText().toString();
+                        String uptimee = edtTimeE.getText().toString();
+                        Query query = reference.child(userID).child("-inForBookStadium").orderByChild("phonePlay").equalTo(arrayBookStadium.get(position).getPhonePlay());
+                        query.addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                String key = snapshot.getKey();
+                                InforBookStadium inforBookStadium = new InforBookStadium(upday,uptimes,uptimee,udname,upphone,updescribe);
+                                reference.child(userID).child("-inForBookStadium").child(key).setValue(inforBookStadium);
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+
+                });
+
+                btnDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Query query = reference.child(userID).child("-inForBookStadium").orderByChild("phonePlay").equalTo(arrayBookStadium.get(position).getPhonePlay());
+                        query.addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                String key = snapshot.getKey();
+                                reference.child(userID).child("-inForBookStadium").child(key).removeValue();
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+                });
+                return false;
             }
         });
         return  view;

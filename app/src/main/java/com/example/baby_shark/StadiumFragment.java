@@ -1,10 +1,7 @@
 package com.example.baby_shark;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -78,16 +74,8 @@ public class StadiumFragment extends ListFragment implements OnMapReadyCallback 
 //        user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("AccountOwnerStadium");
         arrayStadium = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,arrayStadium){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent){
-                TextView item = (TextView) super.getView(position,convertView,parent);
-                item.setTextColor(Color.parseColor("black"));
-                item.setTypeface(item.getTypeface(), Typeface.BOLD);
-                item.setTextSize(TypedValue.COMPLEX_UNIT_DIP,18);
-                return item;
-            }
-        };
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,arrayStadium);
+
         lsStadium.setAdapter(adapter);
         //sự kiện click vào list sân để đặt sân
 
@@ -96,7 +84,6 @@ public class StadiumFragment extends ListFragment implements OnMapReadyCallback 
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String accountOwnerStadium = snapshot.getValue(AccountOwnerStadium.class).getName();
-
                 arrayStadium.add(accountOwnerStadium);
                 adapter.notifyDataSetChanged();
             }

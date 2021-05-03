@@ -17,7 +17,7 @@
         />
 
     <EditText
-        android:text="anktan18@gmail.com"
+        android:text="anktan20@gmail.com"
         android:id="@+id/edittexttaikhoan"
         android:hint=" EMAIL"
         android:textColor="#FFC107"
