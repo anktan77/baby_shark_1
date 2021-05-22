@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="80dp">
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imageViewNTFAccount"
+        android:src="@drawable/ic_account_hero"
+        app:riv_corner_radius="30dp"
+        android:layout_height="60dp"
+        android:layout_width="60dp"/>
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:id="@+id/textViewNTFNameAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên sân"
+        android:layout_toRightOf="@+id/imageViewNTFAccount"/>
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/textViewNTFPhoneAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/textViewNTFNameAccount"
+        android:text="đã chấp nhận yêu cầu đặt sân"/>
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/textViewNTFDayAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ngày đá"
+        android:layout_below="@+id/textViewNTFNameAccount"
+        android:layout_toRightOf="@id/imageViewNTFAccount"/>
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/textViewNTFTimeStartAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="giờ bắt đầu"
+        android:layout_toRightOf="@+id/imageViewNTFAccount"
+        android:layout_below="@+id/textViewNTFDayAccount"/>
+    <TextView
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/textViewNTFTimeEndAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="giờ kết thúc"
+        android:layout_toRightOf="@id/textviewconnectcc"
+        android:layout_below="@id/textViewNTFDayAccount"/>
+
+    <TextView
+        android:id="@+id/textviewconnectcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" - "
+        android:layout_toRightOf="@+id/textViewNTFTimeStartAccount"
+        android:layout_below="@+id/textViewNTFDescribeAccount"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_marginLeft="4dp"
+        android:textColor="@color/black"
+        android:id="@+id/textViewNTFDescribeAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mô tả"
+        android:layout_toRightOf="@+id/textViewNTFDayAccount"
+        android:layout_above="@id/textViewNTFTimeEndAccount"/>
+
+
+    <LinearLayout
+        android:layout_below="@+id/textViewNTFTimeStartAccount"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="3"
+            android:background="@color/teal_200" />
+    </LinearLayout>
+</RelativeLayout>

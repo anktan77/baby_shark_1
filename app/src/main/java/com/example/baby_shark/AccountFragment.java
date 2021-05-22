@@ -1,5 +1,6 @@
 package com.example.baby_shark;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,16 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,28 +36,35 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
 
 public class AccountFragment extends Fragment {
-    Button btnLogout;
-    TextView txtCreateOwnerStadium;
-
+    Button btnLogout,btnUpdateAccount;
     ImageView imgUser;
     TextView txtNameUser, txtPhoneUser, txtEmailUser;
+    CardView crvInfor;
+    EditText edtUpdateName,edtUpdatePhone,edtUpdateEmail;
 
     //firebase
     FirebaseUser user;
     DatabaseReference reference;
-
+    FirebaseAuth mAuth;
     String userID;
 
     //load ảnh
     Uri imageUri;
     FirebaseStorage storage ;
     StorageReference storageReference;
+
+    //
+    String name1;
+    String phone1 ;
+    String email1 ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,13 +72,14 @@ public class AccountFragment extends Fragment {
 
         //ánh xạ
         btnLogout = (Button) view.findViewById(R.id.buttonLogoutUser) ;
-        txtCreateOwnerStadium = (TextView) view.findViewById(R.id.textviewCreateOwnerStadium);
         imgUser = (ImageView) view.findViewById(R.id.imageViewUser);
         txtNameUser = (TextView) view.findViewById(R.id.textViewNameUser);
         txtPhoneUser = (TextView) view.findViewById(R.id.textviewPhoneUser);
         txtEmailUser = (TextView) view.findViewById(R.id.textViewEmailUser);
+        crvInfor = (CardView) view.findViewById(R.id.cardViewInforAccount);
 
         //lấy dữ liệu theo ID
+        mAuth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("AccountBookStadium");
         userID = user.getUid();
@@ -91,6 +104,10 @@ public class AccountFragment extends Fragment {
                     txtEmailUser.setText(email);
                     Picasso.with(getActivity()).load(picture).into(imgUser);
 
+                    name1 = name;
+                    phone1 = phone;
+                    email1 = email;
+
                 }
 
             }
@@ -98,13 +115,6 @@ public class AccountFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getActivity(), "đã xảy ra lỗi", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //tạo owner
-        txtCreateOwnerStadium.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(),RegisterOwnerStadium.class));
             }
         });
 
@@ -125,6 +135,51 @@ public class AccountFragment extends Fragment {
                 //chọn ảnh
                 ChoosePicture();
 
+            }
+        });
+        //
+        crvInfor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(getActivity());
+                dialog.setContentView(R.layout.dialog_update_infor_account);
+                dialog.show();
+                //
+                edtUpdateName = (EditText) dialog.findViewById(R.id.edittextUpdateNameAccount);
+                edtUpdatePhone = (EditText) dialog.findViewById(R.id.edittextUpdatePhoneAccount);
+                edtUpdateEmail = (EditText) dialog.findViewById(R.id.edittextUpdateEmailAccount);
+                btnUpdateAccount = (Button) dialog.findViewById(R.id.buttonUpdateAccount) ;
+                //
+                edtUpdateName.setText(name1);
+                edtUpdatePhone.setText(phone1);
+                edtUpdateEmail.setText(email1);
+
+                //
+                btnUpdateAccount.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String updName = edtUpdateName.getText().toString();
+                        String updPhone = edtUpdatePhone.getText().toString();
+                        String updEmail = edtUpdateEmail.getText().toString();
+
+                        reference.child(userID).child("name").setValue(updName);
+                        reference.child(userID).child("phone").setValue(updPhone);
+                        reference.child(userID).child("email").setValue(updEmail);
+
+                        user.updateEmail(updEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(getActivity(), "cập nhật thành công", Toast.LENGTH_SHORT).show();
+                                    dialog.cancel();
+                                }
+                                else {
+                                    Toast.makeText(getActivity(), "không thành công", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
             }
         });
         return view;

@@ -25,4 +25,11 @@
     <string name="title_owner_notification">Danh sách đặt sân</string>
     <string name="title_owner_account">Tài khoản</string>
 
+
+
+    <string name="app_name0">ModernLogin</string>
+
+    <string name="login_email_hint">Email</string>
+
+    <string name="login_password_hint">Mật khẩu</string>
 </resources>

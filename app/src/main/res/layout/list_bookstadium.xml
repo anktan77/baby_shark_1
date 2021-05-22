@@ -1,74 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
- <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/teal_200"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:gravity="center"
-        android:text="textView"
-        android:id="@+id/textviewLSTimeStart"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/textViewLSDay"
-        android:layout_marginTop="0dp"
-         />
-
-     <TextView
-         android:gravity="center"
-        android:id="@+id/textviewName"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewInforAccount"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/textviewLSTimeStart"
-        android:text="Tên"
-        android:textColor="#f00"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        app:cardElevation="8dp"
 
-    <TextView
-        android:textStyle="bold"
-        android:textColor="#673AB7"
-        android:id="@+id/textviewPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textviewDescribe"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="6dp"
-        android:layout_toRightOf="@+id/textviewLSTimeStart"
-        android:text="Số điện thoại"
-        android:textSize="24sp" />
+        app:cardCornerRadius="15dp"
+        android:layout_margin="20dp">
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <TextView
+                   android:textColor="@color/black"
+                   android:textStyle="bold"
+                   android:id="@+id/textViewLSDay"
+                   android:layout_width="120dp"
+                   android:layout_height="40dp"
+                   android:layout_alignParentTop="true"
+                   android:layout_marginTop="4dp"
+                   android:gravity="center"
+                   android:text="TextView" />
+               <TextView
+                   android:gravity="center"
+                   android:id="@+id/textviewName"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginLeft="1dp"
+                   android:layout_marginTop="10dp"
+                   android:text="Tên"
+                   android:textColor="#f00"
+                   android:textSize="24sp"
+                   android:textStyle="bold" />
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+                   <TextView
+                       android:textColor="@color/black"
+                       android:textStyle="bold"
+                       android:gravity="center"
+                       android:text="textView"
+                       android:id="@+id/textviewLSTimeStart"
+                       android:layout_width="120dp"
+                       android:layout_height="40dp"
+                       android:layout_marginTop="0dp"
+                       />
+                   <TextView
+                       android:id="@+id/textviewDescribe"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_below="@+id/textviewName"
+                       android:layout_marginLeft="3dp"
+                       android:layout_marginTop="9dp"
+                       android:text="Mô tả"
+                       android:textColor="#03A9F4"
+                       android:textSize="22sp" />
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+                   <TextView
+                       android:textColor="@color/black"
+                       android:textStyle="bold"
+                       android:gravity="center"
+                       android:id="@+id/textViewLSTimeEnd"
+                       android:layout_width="120dp"
+                       android:layout_height="40dp"
+                       android:layout_marginTop="0dp"
+                       android:text="TextView" />
+                   <TextView
+                       android:textStyle="bold"
+                       android:textColor="#673AB7"
+                       android:id="@+id/textviewPhone"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="0dp"
+                       android:layout_marginTop="6dp"
+                       android:text="Số điện thoại"
+                       android:textSize="24sp" />
+           </LinearLayout>
+       </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    <TextView
 
-
-        android:id="@+id/textviewDescribe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textviewName"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="9dp"
-        android:layout_toRightOf="@+id/textviewLSTimeStart"
-        android:text="Mô tả"
-        android:textColor="#03A9F4"
-        android:textSize="22sp" />
-
-    <TextView
-        android:gravity="center"
-        android:id="@+id/textViewLSTimeEnd"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/textviewLSTimeStart"
-        android:layout_marginTop="0dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textViewLSDay"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="TextView" />
 
 </RelativeLayout>

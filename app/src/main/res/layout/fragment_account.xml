@@ -8,40 +8,59 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/textviewCreateOwnerStadium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/listviewInforAccountUser"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="65dp"
-        android:layout_marginEnd="245dp"
-        android:text="Tạo chủ sân"
-        android:textColor="@color/teal_200"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <ListView
-        android:id="@+id/listviewInforAccountUser"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+    <androidx.cardview.widget.CardView
+        android:clickable="true"
+        android:id="@+id/cardViewInforAccount"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/imageViewUser"
-        android:layout_marginTop="223dp">
+        android:layout_marginTop="20dp"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginLeft="50dp">
+        <LinearLayout
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:outlineSpotShadowColor="#f00"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/chamthang"/>
+            <TextView
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:text="Thông tin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
-    </ListView>
+    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
 
-    <Button
         android:id="@+id/buttonLogoutUser"
-        android:layout_width="wrap_content"
+        style="@style/loginButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listviewInforAccountUser"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="75dp"
-        android:text="Đăng xuất" />
+        android:layout_below="@+id/cardViewInforAccount"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="420dp"
+        android:text="Đăng xuất"
+        app:initialCornerAngle="27dp"
+        app:spinning_bar_color="#FFF"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp" />
 
     <TextView
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:id="@+id/textViewNameUser"
         android:layout_width="wrap_content"
@@ -62,6 +81,7 @@
         android:src="@drawable/account" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textviewPhoneUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +93,7 @@
         android:textSize="18sp"/>
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textViewEmailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

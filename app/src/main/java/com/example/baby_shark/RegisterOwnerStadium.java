@@ -7,9 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterOwnerStadium extends AppCompatActivity {
     EditText edtName, edtEmail, edtpassword, edtPhone, edtAddress;
+    TextView txtLogin;
     Button btnConfirm;
     ProgressBar progressBar;
     //firebase
@@ -35,8 +38,11 @@ public class RegisterOwnerStadium extends AppCompatActivity {
         edtpassword = (EditText) findViewById(R.id.edittextPasswordRegisterOwnerStadium);
         edtPhone = (EditText) findViewById(R.id.edittextPhoneRegisterOwnerStadium);
         btnConfirm = (Button) findViewById(R.id.buttonConfirmRegisterOwnerStadium);
-        progressBar = (ProgressBar) findViewById(R.id.progressbarRegisterOwnerStadium);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         edtAddress = (EditText) findViewById(R.id.edittextAddressRegisterOwnerStadium);
+        txtLogin = (TextView) findViewById(R.id.textviewBackLoginOwner);
         //
         fAuth = FirebaseAuth.getInstance();
 
@@ -79,7 +85,7 @@ public class RegisterOwnerStadium extends AppCompatActivity {
                     edtPhone.setError("quá 11 số!!!");
                     return;
                 }
-                progressBar.setVisibility(View.VISIBLE);
+
 
                 //tạo user firebase
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -95,7 +101,7 @@ public class RegisterOwnerStadium extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(RegisterOwnerStadium.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                                progressBar.setVisibility(View.GONE);
+
                                                 startActivity(new Intent(RegisterOwnerStadium.this,OwnerStadiumActivity.class));
                                             }
                                             else {
@@ -106,6 +112,14 @@ public class RegisterOwnerStadium extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginOwnerStadium.class));
+                RegisterOwnerStadium.this.finish();
             }
         });
     }

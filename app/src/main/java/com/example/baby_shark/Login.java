@@ -3,19 +3,24 @@ package com.example.baby_shark;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.CallbackManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,6 +36,13 @@ public class Login extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseAuth fAuth;
     Context context;
+    CheckBox cbxRemember;
+
+    CallbackManager callbackManager;
+    //khai báo chức năng lưu
+    SharedPreferences sharedPreferences;
+    ImageView imgLoginFace;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +57,22 @@ public class Login extends AppCompatActivity {
         fAuth=FirebaseAuth.getInstance();
         mLoginBtn=(Button) findViewById(R.id.btnxacnhan);
         mCreateBtn = (TextView) findViewById(R.id.createtext);
+        cbxRemember = (CheckBox) findViewById(R.id.checkBoxRememberAccount);
 
+        //
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+        sharedPreferences = getSharedPreferences("dataLogin",MODE_PRIVATE);
+        //lấy giá trị sau khi đã lưu vào sharepreferences
+        mEmail.setText(sharedPreferences.getString("taikhoan",""));
+        mMatkhau.setText(sharedPreferences.getString("matkhau",""));
+        cbxRemember.setChecked(sharedPreferences.getBoolean("checked",false));
+
+        //tự động đăng nhập
+        if (fAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
 
         //sự kiện click đăng nhập
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +97,26 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            if (cbxRemember.isChecked()){
+                                //mờ file lưu vào
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                //lưu vào editor
+                                editor.putString("taikhoan",Email);
+                                editor.putString("matkhau",password);
+                                //lưu trạng thái checked là true mỗi lần sau
+                                editor.putBoolean("checked",true);
+                                editor.commit();
+                            }
+                            else {
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.remove("taikhoan");
+                                editor.remove("matkhau");
+                                editor.remove("checked");
+                                editor.commit();
+                            }
                             Toast.makeText(Login.this, "Đăng nhập thành công!!!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                         } else {
                             Toast.makeText(Login.this, "Sai email hoặc mật khẩu" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 //                            progressBar.setVisibility(View.GONE);

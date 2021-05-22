@@ -1,9 +1,12 @@
 package com.example.baby_shark;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,19 +20,28 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
@@ -48,27 +60,49 @@ public class BoookStadiumActivity extends AppCompatActivity {
     SimpleDateFormat simpleDateFormat;
 
     //
-    DatabaseReference reference;
-    ArrayList<String> arrayName;
+    DatabaseReference reference,reference1;
+    FirebaseUser user;
+    String userID;
+
+    //slide picture
+    SliderView sliderView;
+    SliderAdapter silderAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boook_stadium);
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         AnhXa();
+
         //lấy dữ liệu phía stadium
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("data");
         String nameStadium = bundle.getString("namestadium");
         txtTitleStadium.setText(nameStadium);
+
+        //tạo slide picture
+        String nameS = txtTitleStadium.getText().toString();
+        silderAdapter = new SliderAdapter(this);
+        sliderView.setSliderAdapter(silderAdapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        sliderView.setIndicatorSelectedColor(Color.WHITE);
+        sliderView.setIndicatorUnselectedColor(Color.GRAY);
+        sliderView.setScrollTimeInSec(3);
+        sliderView.setAutoCycle(true);
+        sliderView.startAutoCycle();
+        renewItems(nameS);
+        removeLastItem();
+        addNewItem();
+        sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
+            @Override
+            public void onIndicatorClicked(int position) {
+                Log.i("GGG", "onIndicatorClicked: " + sliderView.getCurrentPagePosition());
+
+            }
+        });
+
 
         //tạo recycle nằm ngang
         LinearLayoutManager horizonRecycle = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
@@ -76,15 +110,28 @@ public class BoookStadiumActivity extends AppCompatActivity {
         rcvTimeBook.setHasFixedSize(true);
         //array list time book;
         recycleViewTimeBookArrayList = new ArrayList<>();
-//        RecycleViewTimeBook info = new RecycleViewTimeBook("cc","cl");
-//        RecycleViewTimeBook info1 = new RecycleViewTimeBook("clmm","shit");
-//        recycleViewTimeBookArrayList.add(info);
-//        recycleViewTimeBookArrayList.add(info1);
         adapter = new RecyleViewTimeBookAdapter(this,recycleViewTimeBookArrayList);
         rcvTimeBook.setAdapter(adapter);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userID = user.getUid();
+        //
+        reference1 = FirebaseDatabase.getInstance().getReference("AccountBookStadium");
+        reference1.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot snapshot) {
+                Log.d(TAG, "IDcc: "+ userID);
+                String name = snapshot.child("name").getValue(String.class);
+                String phone = snapshot.child("phone").getValue(String.class);
+                edtNameBook.setText(name+"");
+                edtPhoneBook.setText(phone+"");
+            }
 
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
         //kết nối firebase
-
         reference = FirebaseDatabase.getInstance().getReference("AccountOwnerStadium");
         reference.orderByChild("name").equalTo(nameStadium).addChildEventListener(new ChildEventListener() {
             @Override
@@ -117,10 +164,13 @@ public class BoookStadiumActivity extends AppCompatActivity {
         btnFindTimeBooked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                recycleViewTimeBookArrayList.clear();
+                if (recycleViewTimeBookArrayList.size() == 0){
+                    adapter.notifyDataSetChanged();
+                }
                 String day = txtDay.getText().toString();
                 String key = txtKeyStadium.getText().toString();
                 Log.d(TAG, "onChildAdded: "+ day);
-                recycleViewTimeBookArrayList.clear();
                 reference.child(key).child("-inForBookStadium").orderByChild("dayPlay").equalTo(day).addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -223,7 +273,8 @@ public class BoookStadiumActivity extends AppCompatActivity {
                                     }
                                 }
                                 if (f == true){
-                                    InforBookStadium inforBookStadium = new InforBookStadium(day,timeS,timeE,name,phone,describe);
+                                    String email = user.getEmail();
+                                    InforBookStadium inforBookStadium = new InforBookStadium(day,timeS,timeE,name,phone,describe,email);
                                     reference.child(id).child("-waitingInForBookStadium").push().setValue(inforBookStadium);
                                     Toast.makeText(BoookStadiumActivity.this, "Đặt sân thành công", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(BoookStadiumActivity.this,MainActivity.class));
@@ -264,8 +315,44 @@ public class BoookStadiumActivity extends AppCompatActivity {
             }
         });
 
-        //sự kiện tìm giờ đã đặt
+        //sự kiện map
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?q="+nameStadium));
+                startActivity(intent);
+            }
+        });
 
+        //sự kiện call
+        int permisson_callphone = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String key = txtKeyStadium.getText().toString();
+                reference.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                        String phone = snapshot.child("phone").getValue(String.class);
+                        Intent intent = new Intent();
+                        intent.setAction(intent.ACTION_CALL);
+                        intent.setData(Uri.parse("tel:"+ phone));
+                        if (permisson_callphone != PackageManager.PERMISSION_GRANTED){
+                            ActivityCompat.requestPermissions(BoookStadiumActivity.this, new String[]{Manifest.permission.CALL_PHONE},1);
+                        }
+                        else {
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
     }
 
 
@@ -317,8 +404,73 @@ public class BoookStadiumActivity extends AppCompatActivity {
             }
         },nam,thang,ngay);
         datePickerDialog.show();
+
     }
 
+    //sliderpicture
+    public void renewItems(String nameS) {
+        Log.d(TAG,"cccccc" + nameS);
+        List<SliderItem> sliderItemList = new ArrayList<>();
+        reference = FirebaseDatabase.getInstance().getReference("AccountOwnerStadium");
+        reference.orderByChild("name").equalTo(nameS).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable  String previousChildName) {
+                String key =snapshot.getKey();
+                Log.d(TAG,"key nè con"+ key);
+                reference.child(key).child("-folderPicture").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot find : snapshot.getChildren()){
+                            SliderItem sliderItem = new SliderItem();
+                            String picture = find.child("namePic").getValue(String.class);
+                            Log.d(TAG,"hình nè con"+ picture);
+                            sliderItem.setImageUrl(picture);
+                            sliderItemList.add(sliderItem);;
+                        }
+                        silderAdapter.renewItems(sliderItemList);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onChildChanged(@NonNull  DataSnapshot snapshot, @Nullable  String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull  DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable  String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public void removeLastItem() {
+        if (silderAdapter.getCount() - 1 >= 0)
+            silderAdapter.deleteItem(silderAdapter.getCount() - 1);
+    }
+
+    public void addNewItem() {
+        SliderItem sliderItem = new SliderItem();
+        sliderItem.setDescription("Slider Item Added Manually");
+        sliderItem.setImageUrl("https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+        silderAdapter.addItem(sliderItem);
+    }
 
     private void AnhXa() {
         txtDay = (TextView) findViewById(R.id.textviewDay);
@@ -334,5 +486,6 @@ public class BoookStadiumActivity extends AppCompatActivity {
         edtDescribeBook = (EditText) findViewById(R.id.editTextDescribe);
         btnFindTimeBooked = (Button) findViewById(R.id.buttonFindTimeBooked);
         rcvTimeBook = (RecyclerView) findViewById(R.id.recycleviewTimeBook);
+        sliderView = findViewById(R.id.imageSlider);
     }
 }

@@ -3,27 +3,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AccountOwnerFragment">
 
 
-    <ListView
-        android:id="@+id/listviewInforAccountOwner"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+    <androidx.cardview.widget.CardView
+        android:clickable="true"
+        android:id="@+id/cardViewInfor"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/imageViewOwner"
-        android:layout_marginTop="202dp"/>
+        android:layout_marginTop="20dp"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginLeft="50dp">
+        <LinearLayout
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:outlineSpotShadowColor="#f00"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/chamthang"/>
+            <TextView
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:text="Thông tin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    <Button
+
+    <androidx.cardview.widget.CardView
+        android:clickable="true"
+        android:id="@+id/cardViewPicture"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/imageViewOwner"
+        android:layout_toRightOf="@+id/cardViewInfor"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="15dp">
+        <LinearLayout
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/picture"/>
+            <TextView
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:text="Thêm ảnh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+
         android:id="@+id/buttonLogoutOwner"
-        android:layout_width="wrap_content"
+        style="@style/loginButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listviewInforAccountOwner"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="147dp"
-        android:text="Đăng xuất" />
+        android:layout_below="@+id/recycleviewListPicture"
+        android:layout_gravity="center"
+        android:text="Đăng xuất"
+        app:initialCornerAngle="27dp"
+        app:spinning_bar_color="#FFF"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp"
+        android:layout_marginTop="30dp"
+        />
+
 
     <TextView
         android:textStyle="bold"
@@ -36,6 +106,7 @@
         android:layout_toEndOf="@+id/imageViewOwner"
         android:layout_toRightOf="@+id/imageViewOwner"
         android:text="Tên"
+        android:textColor="@color/black"
         android:textSize="24sp" />
 
     <ImageView
@@ -54,6 +125,7 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/imageViewOwner"
         android:text="số điện thoại"
+        android:textColor="@color/black"
         android:textSize="18sp"/>
 
     <TextView
@@ -65,6 +137,27 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/imageViewOwner"
         android:text="Email"
+        android:textColor="@color/black"
         android:textSize="18sp"/>
+    <TextView
+        android:layout_below="@+id/cardViewInfor"
+        android:id="@+id/textviewListPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ảnh của sân"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:id="@+id/recycleviewListPicture"
+            android:layout_width="match_parent"
+            android:layout_height="380dp"
+            android:layout_below="@+id/textviewListPic"/>
+
+
+
 
 </RelativeLayout>

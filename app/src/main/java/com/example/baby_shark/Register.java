@@ -45,7 +45,7 @@ public class Register extends AppCompatActivity {
         mEmail = (EditText)findViewById(R.id.edittextEmail);
         mMatkhau = (EditText)findViewById(R.id.edittextdangkymatkhau);
         mPhone = (EditText)findViewById(R.id.edittextphone);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+
         mRegisterBtn = (Button) findViewById(R.id.btnregisterxacnhan);
         mLoginBtn = (TextView) findViewById(R.id.createtext2);
         //
@@ -98,7 +98,7 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                AccountBookStadium accountBookStadium = new AccountBookStadium(Hovaten,Email, phone,"");
+                                AccountBookStadium accountBookStadium = new AccountBookStadium(Hovaten,Email, phone,"https://firebasestorage.googleapis.com/v0/b/baby-shark-f9656.appspot.com/o/images%2Ficon-account-2.jpg?alt=media&token=ec1d7317-dce5-4e2a-88f7-09691da243f3");
                                 reference = FirebaseDatabase.getInstance().getReference("AccountBookStadium");
                                         reference.child(FirebaseAuth.getInstance().getUid()).setValue(accountBookStadium)
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {

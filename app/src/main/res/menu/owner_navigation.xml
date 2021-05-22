@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_owner_stadium"
-        android:icon="@drawable/stadium"
+        android:icon="@drawable/ic_nav_stadium"
         android:title="@string/title_owner_stadium" />
 
     <item

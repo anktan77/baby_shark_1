@@ -15,12 +15,13 @@
         android:layout_marginStart="66dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="30dp"
-        android:text="Thông báo"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:text="THÔNG BÁO"
+        android:textColor="@color/teal_700"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
 
     <ListView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/listviewNTFOwner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

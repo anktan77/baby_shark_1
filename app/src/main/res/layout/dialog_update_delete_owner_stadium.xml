@@ -10,33 +10,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/account" />
+
     <EditText
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/edittextDALName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tên đặt"
-        android:layout_toRightOf="@+id/imageViewDAL"/>
+        android:layout_marginLeft="0dp"
+        android:layout_toRightOf="@+id/imageViewDAL"
+        android:text="Tên đặt" />
+
     <EditText
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/edittextDALPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/edittextDALName"
         android:text="số điện thoại"/>
     <EditText
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/edittextDALDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ngày đá"
         android:layout_below="@+id/edittextDALName"
         android:layout_toRightOf="@id/imageViewDAL"/>
+
     <EditText
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/edittextDALTimeStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="giờ bắt đầu"
+        android:layout_below="@+id/edittextDALDay"
         android:layout_toRightOf="@+id/imageViewDAL"
-        android:layout_below="@+id/edittextDALDay"/>
+        android:text="giờ bắt đầu" />
     <EditText
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/edittextDALTimeEnd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,20 +58,36 @@
         android:layout_toRightOf="@id/edittextDALTimeStart"
         android:layout_below="@id/edittextDALDay"/>
     <Button
+        android:backgroundTint="@color/teal_700"
+
         android:id="@+id/buttonDALUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cập nhật"
-        android:layout_toRightOf="@id/imageViewDAL"
         android:layout_below="@id/edittextDALTimeStart"/>
     <Button
+        android:backgroundTint="@color/teal_700"
+        android:layout_marginLeft="10dp"
         android:id="@+id/buttonDALDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Xóa"
         android:layout_toRightOf="@id/buttonDALUpdate"
         android:layout_below="@id/edittextDALTimeEnd"/>
+
+    <Button
+        android:id="@+id/buttonDALCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittextDALTimeEnd"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/buttonDALDelete"
+        android:backgroundTint="@color/teal_700"
+        android:text="Gọi" />
+
     <EditText
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:id="@+id/edittextDALDescribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

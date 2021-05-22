@@ -1,6 +1,7 @@
 package com.example.baby_shark;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,11 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.onesignal.OneSignal;
 
 
 public class MainActivity extends AppCompatActivity {
     private ActionBar toolbar;
-
+    private static final String ONESIGNAL_APP_ID = "0c96e73c-a235-4414-81b6-ae364e43a574";
     //gọi login
 public void logout(View view){
     FirebaseAuth.getInstance().signOut();
@@ -28,12 +30,15 @@ public void logout(View view){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
         toolbar = getSupportActionBar();
-
-
         //load trang chính
         toolbar.setTitle("Đặt sân");
-
+        toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.themeColor)));
         loadFragment (new StadiumFragment());
 
         //ánh xạ button navigation
@@ -48,13 +53,8 @@ public void logout(View view){
             Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_stadium:
-                    toolbar.setTitle("Đặt sân");
+                    toolbar.setTitle("Tìm kiếm sân");
                     fragment = new StadiumFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.navigation_ball:
-                    toolbar.setTitle("Cáp kèo");
-                    fragment = new BallFragment();
                     loadFragment(fragment);
                     return true;
                 case R.id.navigation_newpaper:

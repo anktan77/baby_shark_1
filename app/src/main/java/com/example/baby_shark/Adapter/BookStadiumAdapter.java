@@ -1,4 +1,4 @@
-package com.example.baby_shark;
+package com.example.baby_shark.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.baby_shark.InforBookStadium;
+import com.example.baby_shark.R;
 
 import java.util.List;
 
@@ -62,7 +65,6 @@ public class BookStadiumAdapter extends BaseAdapter {
 
     private class ViewHolder{//sử dụng holder để tối ưu cho listview
         TextView txtName,txtDescribe,txtPhone,txtTimeS,txtTimeE,txtDay;
-
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

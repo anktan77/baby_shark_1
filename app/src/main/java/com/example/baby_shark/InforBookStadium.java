@@ -7,14 +7,16 @@ public class InforBookStadium {
     private String namePlay;
     private String phonePlay;
     private String describePlay;
+    private String emailPlay;
 
-    public InforBookStadium(String dayPlay, String timeStart, String timeEnd, String namePlay, String phonePlay, String describePlay) {
+    public InforBookStadium(String dayPlay, String timeStart, String timeEnd, String namePlay, String phonePlay, String describePlay, String emailPlay) {
         this.dayPlay = dayPlay;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
         this.namePlay = namePlay;
         this.phonePlay = phonePlay;
         this.describePlay = describePlay;
+        this.emailPlay = emailPlay;
     }
 
     public String getDayPlay() {
@@ -63,5 +65,13 @@ public class InforBookStadium {
 
     public void setDescribePlay(String describePlay) {
         this.describePlay = describePlay;
+    }
+
+    public String getEmailPlay() {
+        return emailPlay;
+    }
+
+    public void setEmailPlay(String emailPlay) {
+        this.emailPlay = emailPlay;
     }
 }

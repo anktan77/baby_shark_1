@@ -2,13 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_stadium"
-        android:icon="@drawable/stadium"
+        android:icon="@drawable/ic_nav_stadium"
         android:title="@string/title_stadium" />
-
-    <item
-        android:id="@+id/navigation_ball"
-        android:icon="@drawable/ball"
-        android:title="@string/title_ball" />
 
     <item
         android:id="@+id/navigation_newpaper"

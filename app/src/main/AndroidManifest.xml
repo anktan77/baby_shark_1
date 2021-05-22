@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE"/>
-
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,8 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Baby_shark">
         <activity android:name=".RegisterOwnerStadium"></activity>
-        <activity android:name=".LoginOwnerStadium" />
-        <activity android:name=".Register" />
+        <activity android:name=".LoginOwnerStadium"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".Register"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".OwnerStadiumActivity"
             android:label="@string/title_activity_owner_stadium"
@@ -38,6 +43,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-    </application>
 
+        <service
+            android:name=".FirebasePushNotification">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".SendNotificationPack.MyFirebaseIdService"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
 </manifest>

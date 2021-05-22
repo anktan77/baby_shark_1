@@ -12,8 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.baby_shark.SendNotificationPack.Token;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +38,7 @@ public class ListOwnerFragment extends Fragment {
     DatabaseReference reference;
     FirebaseUser user;
     String userID;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,8 +69,9 @@ public class ListOwnerFragment extends Fragment {
                 String describe = snapshot.child("describePlay").getValue(String.class);
                 String timeS = snapshot.child("timeStart").getValue(String.class);
                 String timeE = snapshot.child("timeEnd").getValue(String.class);
+                String email = snapshot.child("emailPlay").getValue(String.class);
                 Log.d(TAG, "onChildAdded: "+ name);
-                inforBookStadiumArrayList.add(new InforBookStadium(day, timeS, timeE, name, phone, describe));
+                inforBookStadiumArrayList.add(new InforBookStadium(day, timeS, timeE, name, phone, describe,email));
                 adapter.notifyDataSetChanged();
             }
 
@@ -89,6 +95,26 @@ public class ListOwnerFragment extends Fragment {
 
             }
         });
+        UpdateToken();
         return view;
     }
+
+    private void UpdateToken(){
+
+        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        firebaseUser.getIdToken(true)
+                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                    public void onComplete(@NonNull Task<GetTokenResult> task) {
+                        if (task.isSuccessful()) {
+                            String idToken = task.getResult().getToken();
+                            Token token = new Token(idToken);
+                            FirebaseDatabase.getInstance().getReference("AccountOwnerStadium").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Tokens").setValue(token);
+                        } else {
+                            // Handle error -> task.getException();
+                        }
+                    }
+                });
+
+    }
+
 }

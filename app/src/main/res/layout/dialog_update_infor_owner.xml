@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputNameOwner"
+        style="@style/parent"
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        app:boxCornerRadiusTopStart="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusTopEnd="15dp">
+        <EditText
+            android:id="@+id/edittextUpdateNameOwner"
+            style="@style/modifiedEditText"
+            android:hint="Tên sân"
+            android:inputType="textPersonName"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputPhoneOwner"
+        style="@style/parent"
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        android:layout_below="@+id/textInputNameOwner"
+        app:boxCornerRadiusTopStart="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusTopEnd="15dp">
+        <EditText
+            android:id="@+id/edittextUpdatePhoneOwner"
+            style="@style/modifiedEditText"
+            android:hint="Số điện thoại"
+            android:inputType="textPersonName"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputAddressOwner"
+        style="@style/parent"
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        android:layout_below="@+id/textInputPhoneOwner"
+        app:boxCornerRadiusTopStart="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusTopEnd="15dp">
+        <EditText
+            android:id="@+id/edittextUpdateAddressOwner"
+            style="@style/modifiedEditText"
+            android:hint="Địa chỉ"
+            android:inputType="textPersonName"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputEmailOwner"
+        style="@style/parent"
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        android:layout_below="@+id/textInputAddressOwner"
+        app:boxCornerRadiusTopStart="15dp"
+        app:boxCornerRadiusBottomStart="15dp"
+        app:boxCornerRadiusBottomEnd="15dp"
+        app:boxCornerRadiusTopEnd="15dp">
+        <EditText
+            android:id="@+id/edittextUpdateEmailOwner"
+            style="@style/modifiedEditText"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+        android:id="@+id/buttonUpdateOwner"
+        style="@style/loginButton"
+        android:layout_below="@+id/textInputEmailOwner"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="Cập nhật"
+        app:initialCornerAngle="27dp"
+        app:spinning_bar_color="#FFF"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp" />
+    <TextView
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonUpdateOwner"
+        android:text="*Lưu ý: việc thay đổi email đồng nghĩa với thay đổi email đăng nhập"/>
+
+</RelativeLayout>
