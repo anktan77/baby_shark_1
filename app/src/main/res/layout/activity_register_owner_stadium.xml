@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:layout_height="match_parent"
-    tools:context=".RegisterOwnerStadium">
+    tools:context=".Owner.Activity.RegisterOwnerStadium">
 
     <ScrollView
         android:layout_width="match_parent"

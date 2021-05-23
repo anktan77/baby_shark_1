@@ -15,19 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Baby_shark">
-        <activity android:name=".RegisterOwnerStadium"></activity>
-        <activity android:name=".LoginOwnerStadium"
+        <activity android:name=".Owner.Activity.RegisterOwnerStadium"></activity>
+        <activity android:name=".Owner.Activity.LoginOwnerStadium"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".Register"
+        <activity android:name=".Account.Activity.Register"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".OwnerStadiumActivity"
+            android:name=".Owner.Activity.OwnerStadiumActivity"
             android:label="@string/title_activity_owner_stadium"
             android:theme="@style/Theme.Baby_shark.NoActionBar" />
         <activity
-            android:name=".BoookStadiumActivity"
+            android:name=".Account.Activity.BoookStadiumActivity"
             android:label="@string/title_activity_boook_stadium"
             android:theme="@style/Theme.Baby_shark.NoActionBar" />
 
@@ -35,17 +35,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_api_key" />
 
-        <activity android:name=".Login">
+        <activity android:name=".Account.Activity.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Account.Activity.MainActivity" />
 
         <service
-            android:name=".FirebasePushNotification">
+            android:name=".SendNotificationPack.FirebasePushNotification">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

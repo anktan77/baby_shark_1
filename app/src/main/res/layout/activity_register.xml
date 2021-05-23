@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:layout_height="match_parent"
-    tools:context=".Register"
+    tools:context=".Account.Activity.Register"
     android:layout_gravity="center">
 
     <ScrollView
@@ -113,6 +113,13 @@
                         android:textColor="@color/themeColor"
                         android:textSize="17sp"
                         android:textStyle="bold" />
+                    <ProgressBar
+                        android:layout_gravity="center"
+                        android:id="@+id/progressbarRegisterAccount"
+                        android:layout_below="@+id/createtext2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <LinearLayout
@@ -268,11 +275,6 @@
 <!--        android:layout_height="wrap_content"-->
 <!--        android:textSize="20dp"-->
 <!--        android:layout_centerHorizontal="true"/>-->
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progressbar"-->
-<!--        android:layout_below="@+id/createtext2"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
+
 
 </RelativeLayout>

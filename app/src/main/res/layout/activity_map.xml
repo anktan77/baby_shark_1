@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
-    android:name="com.example.baby_shark.StadiumFragment">
+    android:name="com.example.baby_shark.Account.Fragment.StadiumFragment">
 
 </fragment>

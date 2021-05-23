@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountFragment">
+    tools:context=".Account.Fragment.AccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -60,13 +60,13 @@
         app:spinning_bar_width="4dp" />
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:id="@+id/textViewNameUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="1dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/imageViewUser"
         android:layout_toRightOf="@+id/imageViewUser"
@@ -81,24 +81,26 @@
         android:src="@drawable/account" />
 
     <TextView
-        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+
         android:id="@+id/textviewPhoneUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewNameUser"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="9dp"
         android:layout_toRightOf="@+id/imageViewUser"
         android:text="số điện thoại"
-        android:textSize="18sp"/>
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <TextView
+        android:layout_marginLeft="10dp"
+
         android:textColor="@color/black"
         android:id="@+id/textViewEmailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textviewPhoneUser"
-        android:layout_marginLeft="1dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/imageViewUser"
         android:text="Email"

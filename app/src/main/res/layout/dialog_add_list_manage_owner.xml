@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true"
     android:layout_height="600dp"
 
-    tools:context=".Login">
+    tools:context=".Account.Activity.Login">
 
     <ScrollView
         android:layout_width="match_parent"

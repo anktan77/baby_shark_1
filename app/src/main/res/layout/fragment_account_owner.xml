@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AccountOwnerFragment">
+    tools:context=".SendNotificationPack.Fragment.AccountOwnerFragment">
 
 
     <androidx.cardview.widget.CardView
@@ -96,12 +96,12 @@
 
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:textStyle="bold"
         android:id="@+id/textViewNameOwner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="1dp"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/imageViewOwner"
         android:layout_toRightOf="@+id/imageViewOwner"
@@ -117,11 +117,11 @@
         android:src="@drawable/account" />
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/textviewPhoneOwner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewNameOwner"
-        android:layout_marginLeft="1dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/imageViewOwner"
         android:text="số điện thoại"
@@ -129,11 +129,11 @@
         android:textSize="18sp"/>
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/textViewEmailOwner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textviewPhoneOwner"
-        android:layout_marginLeft="1dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/imageViewOwner"
         android:text="Email"

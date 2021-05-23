@@ -6,7 +6,7 @@
     android:orientation="vertical"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".StadiumFragment"
+    tools:context=".Account.Fragment.StadiumFragment"
     android:descendantFocusability="blocksDescendants"
     >
 

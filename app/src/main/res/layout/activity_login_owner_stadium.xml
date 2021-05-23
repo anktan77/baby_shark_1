@@ -7,7 +7,7 @@
     android:background="@color/login_bk_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
-    tools:context=".LoginOwnerStadium">
+    tools:context=".Owner.Activity.LoginOwnerStadium">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
